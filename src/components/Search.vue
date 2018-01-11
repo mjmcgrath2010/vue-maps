@@ -2,10 +2,10 @@
 	<div>
 		<v-text-field
 	        label="Search"
-	        <!-- v-model="name"
+	        v-model="name"
 	        :error-messages="nameErrors"
 	        @input="$v.name.$touch()"
-	        @blur="$v.name.$touch()" -->
+	        @blur="$v.name.$touch()"
 	      ></v-text-field>
 	</div>
 </template>

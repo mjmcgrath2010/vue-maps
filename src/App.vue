@@ -22,8 +22,7 @@
 import Map from './components/Map';
 import LocationCard from './components/LocationCard';
 import Search from './components/Search';
-import axios from 'axios';
-import Vue from 'vue'
+
 export default {
   name: 'app',
   components: {

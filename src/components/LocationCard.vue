@@ -23,7 +23,7 @@
 </script>
 <style scoped>
 	.location-card{
-		margin: .5em 0;
+		margin: 2em 0;
 		box-shadow: #0000007a 3px 3px 7px;
 		-webkit-box-shadow: #0000007a 3px 3px 7px;
 		-moz-box-shadow: #0000007a 3px 3px 7px;
