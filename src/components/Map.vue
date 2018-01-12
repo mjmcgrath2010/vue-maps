@@ -1,5 +1,7 @@
 <template>
- <div class="map" :id="mapId"></div>
+  <div class="map-container">
+    <div class="map" :id="mapId"></div>
+  </div>
 </template>
 
 <script>
@@ -35,6 +37,11 @@ export default {
 .map {
   height: 100vh;
   width: 100%; 
-  z-index: 1000;
+}
+
+.map-container {
+  position: fixed;
+  height: 100vh;
+  width: 100%; 
 }
 </style>

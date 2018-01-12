@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<v-btn flat color="orange" :@click="openModal">View Details</v-btn>
+		<v-btn flat color="orange" @click="openModal">View Details</v-btn>
 		<div class="detail-modal" v-if="active === true">
 			<div class="modal-body">
 				<p> Hello, World</p>
@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import Vue from 'vue';
+
 export default {
 	name: 'DetailModal',
 	data() {

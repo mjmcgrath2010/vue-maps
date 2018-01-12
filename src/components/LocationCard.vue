@@ -19,15 +19,15 @@
  export default {
  	name: 'LocationCard',
  	// Properties needed to render the component card and set up the DetailsModal
- 	props: ['locationName', 'featuredImage', 'description', 'website', 'locatationImages'],
+ 	props: ['locationName', 'featuredImage', 'locationDescription', 'locationWebsite', 'locatationImages'],
  	data(){
  		// Passing data via props to render respective properties for LocationCard
  		return{
  			image: this.featuredImage,
  			images: this.locatationImages,
  			name: this.locationName,
- 			description: this.description,
- 			website: this.website,
+ 			description: this.locationDescription,
+ 			website: this.locationWebsite,
  		};
  	},
  	components: {
