@@ -5,12 +5,14 @@
 </template>
 
 <script>
+import Vue from 'vue';
 export default {
   name: 'Map',
   props: ['name'],
   data() {
     return {
       mapId: this.name,
+      map: undefined,
     };
   },
   mounted() {
@@ -27,6 +29,7 @@ export default {
     };
     // Create a map object and specify the DOM element for display.
     const map = new google.maps.Map(element, mapOptions);
+    Vue.set(this, 'map', map);
   },
 };
 </script>

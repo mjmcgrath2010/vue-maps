@@ -80,8 +80,8 @@ export default {
       return Vue.set(this, "filteredData", search);
     },
     addPins(){
-      console.log('Adding Pins')
-    },
+     // console.log('Adding pins', this.sampleData, this)
+    }
   },
   mounted() {
     // When the application mounts, fetch the data from mock api then add pins to the map
