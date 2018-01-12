@@ -48,7 +48,7 @@ export default {
     };
   },
   methods: {
-    fetchData() {
+    fetchData(cb) {
       // Ensuring we have a refrence to the proper scope for handling response data
       const that = this;
       // Fetching data from mock API (see static/sample-data.json)
@@ -58,6 +58,7 @@ export default {
           if (response && response.data) {
             Vue.set(that, "sampleData", response.data);
             Vue.set(that, "filteredData", response.data);
+            cb();
           }
         })
         // This should be handled better, chose to leave out setting error states and messgaes for sake of time
@@ -78,10 +79,14 @@ export default {
       // If input does exist, return filtered search
       return Vue.set(this, "filteredData", search);
     },
+    addPins(){
+      console.log('Adding Pins')
+    },
   },
   mounted() {
-    // When the application mounts, fetch the data from mock api
-    this.fetchData();
+    // When the application mounts, fetch the data from mock api then add pins to the map
+    this.fetchData(this.addPins);
+
   },
 }
 </script>
