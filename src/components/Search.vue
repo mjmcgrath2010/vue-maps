@@ -11,12 +11,15 @@
 </template>
 
 <script>
-	export default {
-		name: "Search",
-		data(){
-			return {}
-		}
-	}
+export default {
+	name: "Search",
+	data(){
+		return {};
+	},
+	methods: {
+
+	},
+};
 </script>
 
 <style scoped>
