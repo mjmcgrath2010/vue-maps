@@ -6,6 +6,7 @@
               label="Search"
               single-line
               prepend-icon="search"
+              v-on:input="filterResults"
             ></v-text-field>
           </v-flex>
 	</div>
@@ -14,14 +15,15 @@
 <script>
 export default {
 	name: "Search",
-	props: ['dataSource'],
+	props: ['dataSource', 'autoComplete'],
 	data(){
 		return {
 			data: this.dataSource,
+			filterResults: this.autoComplete,
 		};
 	},
 	methods: {
-
+	
 	},
 };
 </script>

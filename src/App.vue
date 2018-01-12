@@ -5,8 +5,8 @@
         <v-flex xs12 sm12 md4>
           <v-layout>
             <v-flex offset-xs1 xs10>
-              <search :dataSource="sampleData"></search>
-              <div  v-for="item in sampleData" :key="item.id">
+              <search :autoComplete="filterResults" :dataSource="sampleData"></search>
+              <div  v-for="item in filteredData" :key="item.id">
                  <location-card
               :locationName="item.name"
               ></location-card>
@@ -43,7 +43,8 @@ export default {
   },
   data() {
     return {
-      sampleData: []
+      sampleData: [],
+      filteredData: [],
     };
   },
   methods: {
@@ -56,16 +57,32 @@ export default {
         .then(response => {
           if (response && response.data) {
             Vue.set(that, "sampleData", response.data);
+            Vue.set(that, "filteredData", response.data);
           }
         })
         // This should be handled better, chose to leave out setting error states and messgaes for sake of time
         .catch(err => console.log(err));
-    }
+    },
+    filterResults(e){
+      const locations = this.filteredData;
+      const input = e.toLowerCase().trim();
+      // Filtering Data and only returning matches
+      const search = locations.filter(place => {
+        const name = place.name.toLowerCase().trim();
+        return name.indexOf(input) > -1;
+      });
+      // Checking if input exsists, if it does not we reset the filteredData to original state
+      if(!input){
+        return Vue.set(this, "filteredData", this.sampleData);
+      }
+      // If input does exist, return filtered search
+      return Vue.set(this, "filteredData", search);
+    },
   },
   mounted() {
     // When the application mounts, fetch the data from mock api
     this.fetchData();
-  }
+  },
 }
 </script>
 
