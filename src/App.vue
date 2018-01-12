@@ -5,7 +5,7 @@
         <v-flex xs12 sm12 md4>
           <v-layout>
             <v-flex offset-xs1 xs10>
-              <search></search>
+              <search :dataSource="sampleData"></search>
               <div  v-for="item in sampleData" :key="item.id">
                  <location-card
               :locationName="item.name"
@@ -70,6 +70,10 @@ export default {
 </script>
 
 <style>
+#app {
+  font-family: Roboto, sans-serif;
+}
+
 html,
 body {
   height: 100%;

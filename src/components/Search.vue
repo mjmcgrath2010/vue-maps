@@ -1,20 +1,24 @@
 <template>
 	<div>
-		<v-text-field
-	        label="Search"
-	       <!--  v-model="name"
-	        :error-messages="nameErrors"
-	        @input="$v.name.$touch()"
-	        @blur="$v.name.$touch()" -->
-	      ></v-text-field>
+		 <v-flex xs12>
+            <v-text-field
+              name="input-1-3"
+              label="Search"
+              single-line
+              prepend-icon="search"
+            ></v-text-field>
+          </v-flex>
 	</div>
 </template>
 
 <script>
 export default {
 	name: "Search",
+	props: ['dataSource'],
 	data(){
-		return {};
+		return {
+			data: this.dataSource,
+		};
 	},
 	methods: {
 
