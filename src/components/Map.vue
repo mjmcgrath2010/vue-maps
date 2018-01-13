@@ -37,6 +37,7 @@ export default {
     };
     // Create a map object and specify the DOM element for display.
     const map = new google.maps.Map(element, mapOptions);
+    // Storing reference to the map inside component data
     Vue.set(this, 'map', map);
   },
   methods: {
@@ -47,14 +48,43 @@ export default {
       if (!data) {
         return;
       }; 
+      
       processedData = data.pins;
       // I prefer to use lodash when I can to avoid browser compaitiabilty nightmares :)
-      _.forEach(processedData, function(value, index) {
+      _.forEach(processedData,(value, index) => {
         let marker = new google.maps.Marker({
           position: value,
           map: targetMap
         });
       });
+      // Helper function for finding the map center.
+      this.findCenter(processedData);
+    },
+    findCenter(data){
+      const that = this;
+      let latTotal = 0;
+      let lngTotal = 0;
+      let pinTotal;
+      let meanMapCenter;
+
+      if (!data) {
+        return;
+      }
+
+      pinTotal = data.length;
+      // I prefer to use lodash when I can to avoid browser compaitiabilty nightmares :)
+      _.forEach(data, (val) =>{
+        latTotal += val.lat;
+        lngTotal += val.lng
+      });
+
+      meanMapCenter = {
+        lat: latTotal / pinTotal,
+        lng: lngTotal / pinTotal,
+      };
+      // Setting the center inside data and applying it to map.
+      Vue.set(this, 'mapCenter', meanMapCenter);
+      this.map.setCenter(new google.maps.LatLng(that.mapCenter));
     },
   },
 };
