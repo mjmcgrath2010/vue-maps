@@ -15,6 +15,10 @@ export default {
       map: undefined,
     };
   },
+  created(){
+    // Set up listener for add-pins event from parent.
+    this.$parent.$on('add-pins', this.addPins);
+  },
   mounted() {
     // Getting reference to the dom element we'll use to set up the map
     const element = document.getElementById(this.mapId);
@@ -30,6 +34,11 @@ export default {
     // Create a map object and specify the DOM element for display.
     const map = new google.maps.Map(element, mapOptions);
     Vue.set(this, 'map', map);
+  },
+  methods: {
+    addPins(data){
+      console.log('Pins being added', data);
+    },
   },
 };
 </script>

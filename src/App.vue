@@ -80,7 +80,8 @@ export default {
       return Vue.set(this, "filteredData", search);
     },
     addPins(){
-     // console.log('Adding pins', this.sampleData, this)
+     // Tell Map Component to add pins to the Map after recieving data
+     this.$emit('add-pins', { data: this.sampleData })
     }
   },
   mounted() {
