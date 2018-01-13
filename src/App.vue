@@ -33,6 +33,7 @@ import Vue from 'vue';
 import Map from './components/Map';
 import LocationCard from './components/LocationCard';
 import Search from './components/Search';
+import _ from 'lodash';
 
 export default {
   name: 'app',
@@ -80,8 +81,18 @@ export default {
       return Vue.set(this, "filteredData", search);
     },
     addPins(){
-     // Tell Map Component to add pins to the Map after recieving data
-     this.$emit('add-pins', { data: this.sampleData })
+     let pinData =[];
+      // I prefer to use lodash when I can to avoid browser compaitiabilty nightmares :)
+     _.forEach(this.sampleData, (val)=>{
+        if (val && val.location) {
+         pinData.push({
+            lat: val.location.lat,
+            lng: val.location.lon
+          });
+        }
+     });
+      // Tell Map Component to add pins to the Map after recieving data
+     this.$emit('add-pins', { pins: pinData })
     }
   },
   mounted() {

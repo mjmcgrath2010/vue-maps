@@ -6,6 +6,8 @@
 
 <script>
 import Vue from 'vue';
+import _ from 'lodash';
+
 export default {
   name: 'Map',
   props: ['name'],
@@ -13,6 +15,11 @@ export default {
     return {
       mapId: this.name,
       map: undefined,
+      mapCenter: {
+        lat: -34.397,
+        lng: 150.644,
+      },
+      zoomLevel: 8,
     };
   },
   created(){
@@ -22,14 +29,11 @@ export default {
   mounted() {
     // Getting reference to the dom element we'll use to set up the map
     const element = document.getElementById(this.mapId);
-    //Setting up map options
+    //Setting up map options and reading dynamic properties from data
     const mapOptions = {
-      center: {
-        lat: -34.397,
-        lng: 150.644, 
-      },
+      center: this.mapCenter,
       scrollwheel: false,
-      zoom: 8,
+      zoom: this.zoomLevel,
     };
     // Create a map object and specify the DOM element for display.
     const map = new google.maps.Map(element, mapOptions);
@@ -37,7 +41,20 @@ export default {
   },
   methods: {
     addPins(data){
-      console.log('Pins being added', data);
+      const targetMap = this.map;
+      let processedData;
+
+      if (!data) {
+        return;
+      }; 
+      processedData = data.pins;
+      // I prefer to use lodash when I can to avoid browser compaitiabilty nightmares :)
+      _.forEach(processedData, function(value, index) {
+        let marker = new google.maps.Marker({
+          position: value,
+          map: targetMap
+        });
+      });
     },
   },
 };
