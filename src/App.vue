@@ -2,7 +2,7 @@
   <div id="app">
     <v-container grid-list-md text-xs-center fluid>
       <v-layout row wrap>
-        <v-flex xs12 sm12 md4>
+        <v-flex md4 class="sideNav">
           <v-layout>
             <v-flex offset-xs1 xs10>
               <search :autoComplete="filterResults" :dataSource="sampleData"></search>
@@ -14,7 +14,7 @@
             </v-flex>
           </v-layout>
         </v-flex>
-        <v-flex xs12 sm12 md8>
+        <v-flex md8>
           <Map name="ground-signal"></Map>
         </v-flex>
       </v-layout>
@@ -106,6 +106,9 @@ export default {
 <style>
 #app {
   font-family: Roboto, sans-serif;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
 }
 
 html,
@@ -118,5 +121,10 @@ body {
 .container.fluid {
     max-width: 100%;
     padding: 0;
+}
+
+.sideNav{
+  overflow: auto;
+  height: 100vh;
 }
 </style>

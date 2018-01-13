@@ -99,7 +99,6 @@ export default {
 }
 
 .map-container {
-  position: fixed;
   height: 100vh;
   width: 100%; 
 }
