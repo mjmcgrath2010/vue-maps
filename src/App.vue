@@ -19,11 +19,6 @@
         </v-flex>
       </v-layout>
     </v-container>
-    <pre>
-      <code>
-        {{$data}}
-      </code>
-    </pre>
   </div>
 </template>
 
