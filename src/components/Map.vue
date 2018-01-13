@@ -19,7 +19,7 @@ export default {
         lat: -34.397,
         lng: 150.644,
       },
-      zoomLevel: 8,
+      zoomLevel: 12,
     };
   },
   created(){
@@ -48,7 +48,7 @@ export default {
       if (!data) {
         return;
       }; 
-      
+
       processedData = data.pins;
       // I prefer to use lodash when I can to avoid browser compaitiabilty nightmares :)
       _.forEach(processedData,(value, index) => {
