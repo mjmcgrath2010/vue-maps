@@ -1,12 +1,20 @@
 <template>
-	<div>
-		<v-btn flat color="orange" @click="openModal">View Details</v-btn>
-		<div class="detail-modal" v-if="active === true">
-			<div class="modal-body">
-				<p> Hello, World</p>
-			</div>
-		</div>
-	</div>
+	  <v-layout row justify-center>
+    <v-dialog v-model="dialog" width="600px">
+      <v-btn color="primary" dark slot="activator">View Details</v-btn>
+      <v-card>
+        <v-card-title>
+          <span class="headline">Use Google's location service?</span>
+        </v-card-title>
+        <v-card-text>Hello World!</v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="green darken-1" flat="flat" @click="dialog = false">Close</v-btn>
+          <v-btn color="green darken-1" flat="flat" @click="dialog = false">View on Map</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </v-layout>
 </template>
 
 <script>
@@ -16,19 +24,10 @@ export default {
 	name: 'DetailModal',
 	data() {
 		return {
-			active: false
+			dialog: false,
 		};
 	},
-	methods: {
-		openModal() {
-			// Display Modal
-			Vue.set(this, 'active', true);
-		},
-		closeModal() {
-			// Hide Modal
-			Vue.set(this, 'active', false);
-		},
-	},
+	methods: {},
 };
 </script>
 
