@@ -1,25 +1,27 @@
 <template>
-  <div id="app">
-    <v-container grid-list-md text-xs-center fluid>
-      <v-layout row wrap>
-        <v-flex md4 class="sideNav">
-          <v-layout>
-            <v-flex offset-xs1 xs10>
-              <search :autoComplete="filterResults" :dataSource="sampleData"></search>
-              <div  v-for="item in filteredData" :key="item.id">
-                 <location-card
-              :locationName="item.name"
-              ></location-card>
-              </div>
-            </v-flex>
-          </v-layout>
-        </v-flex>
-        <v-flex md8>
-          <Map name="ground-signal"></Map>
-        </v-flex>
-      </v-layout>
-    </v-container>
-  </div>
+  <v-app>
+    <div id="app">
+      <v-container grid-list-md text-xs-center fluid>
+        <v-layout row wrap>
+          <v-flex md4 class="sideNav">
+            <v-layout>
+              <v-flex offset-xs1 xs10>
+                <search :autoComplete="filterResults" :dataSource="sampleData"></search>
+                <div  v-for="item in filteredData" :key="item.id">
+                   <location-card
+                :locationName="item.name"
+                ></location-card>
+                </div>
+              </v-flex>
+            </v-layout>
+          </v-flex>
+          <v-flex md8>
+            <Map name="ground-signal"></Map>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </div>
+  </v-app>
 </template>
 
 <script>
@@ -61,8 +63,8 @@ export default {
         .catch(err => console.log(err));
     },
     filterResults(e){
-      const locations = this.filteredData;
-      const input = e.toLowerCase().trim();
+      const locations = this.sampleData;
+      const input = e.target.value.toLowerCase().trim();
       // Filtering Data and only returning matches
       const search = locations.filter(place => {
         const name = place.name.toLowerCase().trim();
@@ -87,7 +89,7 @@ export default {
         }
      });
       // Tell Map Component to add pins to the Map after recieving data
-     this.$emit('add-pins', { pins: pinData })
+     this.$root.$emit('add-pins', { pins: pinData })
     }
   },
   mounted() {

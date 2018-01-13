@@ -24,7 +24,7 @@ export default {
   },
   created(){
     // Set up listener for add-pins event from parent.
-    this.$parent.$on('add-pins', this.addPins);
+    this.$root.$on('add-pins', this.addPins);
   },
   mounted() {
     // Getting reference to the dom element we'll use to set up the map

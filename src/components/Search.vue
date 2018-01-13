@@ -6,7 +6,7 @@
               label="Search"
               single-line
               prepend-icon="search"
-              v-on:input="filterResults"
+              @keyup.native="filterResults"
             ></v-text-field>
           </v-flex>
 	</div>
@@ -21,9 +21,6 @@ export default {
 			data: this.dataSource,
 			filterResults: this.autoComplete,
 		};
-	},
-	methods: {
-	
 	},
 };
 </script>
