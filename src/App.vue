@@ -10,6 +10,7 @@
                 <div  v-for="item in filteredData" :key="item.id">
                    <location-card
                 :locationName="item.name"
+                :featuredImage="item.images ? item.images[0] : item.image"
                 ></location-card>
                 </div>
               </v-flex>

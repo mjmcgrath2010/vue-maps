@@ -3,6 +3,8 @@
     <v-dialog v-model="dialog" width="600px">
       <v-btn color="primary" dark slot="activator">View Details</v-btn>
       <v-card>
+      	<v-card-media :src="images" height="200px">
+        </v-card-media>
         <v-card-title>
           <span class="headline">Use Google's location service?</span>
         </v-card-title>
@@ -22,9 +24,11 @@ import Vue from 'vue';
 
 export default {
 	name: 'DetailModal',
+	props: ['cardImages'],
 	data() {
 		return {
 			dialog: false,
+			images: this.cardImages,
 		};
 	},
 	methods: {},
