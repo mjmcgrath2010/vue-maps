@@ -12,6 +12,9 @@
 	  <v-card-actions>
 	    <detail-modal
 		:viewOnMap="pan"
+		:cardImages="image"
+		:locationName="name"
+		:locationDescription="description"
 	    />
 	    <v-btn @click="pan" color="success">
  			View on Map
