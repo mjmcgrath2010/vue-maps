@@ -95,7 +95,7 @@ export default {
       this.map.setZoom(18);
       Vue.set(this, 'mapCenter', data.location);
       Vue.set(this, 'zoomLevel', 18);
-    }
+    },
   },
 };
 </script>

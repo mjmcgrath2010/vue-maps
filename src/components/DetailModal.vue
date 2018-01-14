@@ -2,20 +2,21 @@
 	<div>
 	 <v-btn color="primary" style="margin-bottom: 4px" dark @click="dialog = true">View Details</v-btn>
 	  <v-layout row justify-center>
-	    <v-dialog v-model="dialog" width="60%">
+	    <v-dialog v-model="dialog" width="50%">
 	      <v-card>
-	      	<v-card-media :src="images" height="50vh">
-	        </v-card-media>
+		      	<image-slider v-if="images" :locationImages="images"></image-slider>
+		      	<v-card-media v-if="!images && image" :src="image" height="40vh">
+	        	</v-card-media>
 	        <v-card-title>
 	          <span class="headline">{{name}}</span>
 	        </v-card-title>
 	        <v-card-text>
 	        	<p class="description">{{description || 'Description not Availible'}}</p>
-	        	<span v-if="website">Visit us on the web: <a :href="website">{{website}}</a></span>
+	        	<span v-if="website">Visit us on the web: <a :href="website" target="_blank">{{website}}</a></span>
 	    	</v-card-text>
 	        <v-card-actions>
 	          <v-spacer></v-spacer>
-	          <v-btn color="green darken-1" flat="flat" @click="dialog = false">Close</v-btn>
+	          <v-btn color="red darken-1" flat="flat" @click="dialog = false">Close</v-btn>
 	          <v-btn color="green darken-1" flat="flat" @click="mapLocation">View on Map</v-btn>
 	        </v-card-actions>
 	      </v-card>
@@ -26,17 +27,19 @@
 
 <script>
 import Vue from 'vue';
+import ImageSlider from './ImageSlider';
 
 export default {
 	name: 'DetailModal',
-	props: ['cardImages', 'viewOnMap', 'locationDescription', 'locationName', 'locationWebsite'],
+	props: ['cardImage', 'cardImages', 'viewOnMap', 'locationDescription', 'locationName', 'locationWebsite'],
 	data() {
 		return {
 			dialog: false,
+			image: this.cardImage,
 			images: this.cardImages,
 			description: this.locationDescription,
 			name: this.locationName,
-			website: this.locationWebsite
+			website: this.locationWebsite,
 		};
 	},
 	methods: {
@@ -45,6 +48,9 @@ export default {
 			this.dialog = false;
 		}
 	},
+	components: {
+		ImageSlider,
+	},
 };
 </script>
 
@@ -52,4 +58,12 @@ export default {
 	.description {
 		font-size: 1.3em;
 	}
+
+	.images-container{
+		height: 200px;
+	}
+
+	.slider {
+		/*height: 200px;*/
+	}	
 </style>

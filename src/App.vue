@@ -11,6 +11,7 @@
                    <location-card
                     :locationName="item.name"
                     :featuredImage="(item.images ? item.images[0] : item.image || 'http://veventers.com/venueManager/uploads/venue-images/default-venue-image.jpeg')"
+                    :locatationImages="item.images ? item.images : ''"
                     :panToLocation="mapLocation"
                     :latLon="item.location"
                     :locationWebsite="item.details ? item.details.website : ''"
@@ -89,20 +90,20 @@ export default {
         if (val && val.location) {
          pinData.push({
             lat: val.location.lat,
-            lng: val.location.lon
+            lng: val.location.lon,
           });
         }
      });
       // Tell Map Component to add pins to the Map after recieving data
-     this.$root.$emit('add-pins', { pins: pinData })
+     this.$root.$emit('add-pins', { pins: pinData });
     },
     mapLocation(card) {
       const location = {
         lat: card.position.lat,
-        lng: card.position.lon
+        lng: card.position.lon,
       };
       // Tell map component to map the clicked location
-      this.$root.$emit('map-location', { location: location })
+      this.$root.$emit('map-location', { location: location });
     }, 
   },
   mounted() {
