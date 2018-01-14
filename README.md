@@ -20,6 +20,3 @@ npm run build
 npm run build --report
 ```
 
-## Application Development Notes
-
-## What I didn't do and why
