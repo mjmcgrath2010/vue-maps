@@ -1,40 +1,115 @@
 <template>
- <div class="map" :id="mapId"></div>
+  <div class="map-container">
+    <div class="map" :id="mapId"></div>
+  </div>
 </template>
 
 <script>
+import Vue from 'vue';
+import _ from 'lodash';
+
 export default {
   name: 'Map',
   props: ['name'],
   data() {
     return {
-      mapId: this.name + "-map",
-    }
+      mapId: this.name,
+      map: undefined,
+      mapCenter: {
+        lat: -34.397,
+        lng: 150.644,
+      },
+      zoomLevel: 12,
+    };
+  },
+  created(){
+    // Set up listener for add-pins event from parent.
+    this.$root.$on('add-pins', this.addPins);
+    this.$root.$on('map-location', this.mapLocation);
   },
   mounted() {
     // Getting reference to the dom element we'll use to set up the map
-    const element = document.getElementById(this.mapId)
-    //Setting up map options
+    const element = document.getElementById(this.mapId);
+    //Setting up map options and reading dynamic properties from data
     const mapOptions = {
-      center: {
-        lat: -34.397,
-        lng: 150.644
-      },
+      center: this.mapCenter,
       scrollwheel: false,
-      zoom: 8,
+      zoom: this.zoomLevel,
     };
     // Create a map object and specify the DOM element for display.
     const map = new google.maps.Map(element, mapOptions);
-  }
+    // Storing reference to the map inside component data
+    Vue.set(this, 'map', map);
+  },
+  methods: {
+    addPins(data){
+      const targetMap = this.map;
+      const markers = []
+      let processedData;
+
+      if (!data) {
+        return;
+      }; 
+
+      processedData = data.pins;
+      // I prefer to use lodash when I can to avoid browser compaitiabilty nightmares :)
+      _.forEach(processedData,(value, index) => {
+        markers[index] = new google.maps.Marker({
+          position: value,
+          map: targetMap
+        });
+      });
+      // Helper function for finding the map center.
+      this.findCenter(processedData);
+    },
+    findCenter(data){
+      const that = this;
+      let latTotal = 0;
+      let lngTotal = 0;
+      let pinTotal;
+      let meanMapCenter;
+
+      if (!data) {
+        return;
+      }
+
+      pinTotal = data.length;
+      // I prefer to use lodash when I can to avoid browser compaitiabilty nightmares :)
+      _.forEach(data, (val) =>{
+        latTotal += val.lat;
+        lngTotal += val.lng
+      });
+
+      meanMapCenter = {
+        lat: latTotal / pinTotal,
+        lng: lngTotal / pinTotal,
+      };
+      // Setting the center inside data and applying it to map.
+      Vue.set(this, 'mapCenter', meanMapCenter);
+      this.map.setCenter(new google.maps.LatLng(that.mapCenter));
+    },
+    mapLocation(data) {
+      Vue.set(this, 'mapCenter', data.location);
+      //Centering the map and adjusting properties in Data
+      this.map.setCenter(new google.maps.LatLng(data.location));
+      this.map.setZoom(18);
+      Vue.set(this, 'mapCenter', data.location);
+      Vue.set(this, 'zoomLevel', 18);
+    },
+  },
 };
 </script>
 
 <!-- Added "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-/* Height and width for a fullscreen map should be Verticle Height and Width, not percentages */
+/*Slightly changed CSS to fit my chosen layout*/
 .map {
   height: 100vh;
   width: 100%; 
-  z-index: 1000;
+}
+
+.map-container {
+  height: 100vh;
+  width: 100%; 
 }
 </style>
