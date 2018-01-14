@@ -10,7 +10,7 @@
                 <div  v-for="item in filteredData" :key="item.id">
                    <location-card
                     :locationName="item.name"
-                    :featuredImage="(item.images ? item.images[0] : item.image || 'http://veventers.com/venueManager/uploads/venue-images/default-venue-image.jpeg')"
+                    :featuredImage="(item.images ? item.images[0] : item.image || '//veventers.com/venueManager/uploads/venue-images/default-venue-image.jpeg')"
                     :locatationImages="item.images ? item.images : ''"
                     :panToLocation="mapLocation"
                     :latLon="item.location"
