@@ -88,7 +88,12 @@ export default {
       this.map.setCenter(new google.maps.LatLng(that.mapCenter));
     },
     mapLocation(data) {
-      console.log('Mapping location from the Map component', data.location);
+      Vue.set(this, 'mapCenter', data.location);
+      //Centering the map and adjusting properties in Data
+      this.map.setCenter(new google.maps.LatLng(data.location));
+      this.map.setZoom(18);
+      Vue.set(this, 'mapCenter', data.location);
+      Vue.set(this, 'zoomLevel', 18);
     }
   },
 };

@@ -97,7 +97,7 @@ export default {
     mapLocation(card) {
       const location = {
         lat: card.position.lat,
-        lon: card.position.lon
+        lng: card.position.lon
       };
       // Tell map component to map the clicked location
       this.$root.$emit('map-location', { location: location })
