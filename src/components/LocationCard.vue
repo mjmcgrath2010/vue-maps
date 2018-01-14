@@ -15,6 +15,7 @@
 		:cardImages="image"
 		:locationName="name"
 		:locationDescription="description"
+		:locationWebsite="website"
 	    />
 	    <v-btn @click="pan" color="success">
  			View on Map

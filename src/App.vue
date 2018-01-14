@@ -13,6 +13,8 @@
                     :featuredImage="(item.images ? item.images[0] : item.image || 'http://veventers.com/venueManager/uploads/venue-images/default-venue-image.jpeg')"
                     :panToLocation="mapLocation"
                     :latLon="item.location"
+                    :locationWebsite="item.details ? item.details.website : ''"
+                    :locationDescription="item.details ? item.details.description : ''"
                     ></location-card>
                 </div>
               </v-flex>
