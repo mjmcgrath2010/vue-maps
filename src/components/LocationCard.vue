@@ -10,7 +10,12 @@
 	    </div>
 	  </v-card-title>
 	  <v-card-actions>
-	    <detail-modal/>
+	    <detail-modal
+		:viewOnMap="pan"
+	    />
+	    <v-btn @click="pan" color="success">
+ 			View on Map
+   		</v-btn>
 	  </v-card-actions>
 	</v-card> 
 </template>
@@ -21,7 +26,7 @@
  export default {
  	name: 'LocationCard',
  	// Properties needed to render the component card and set up the DetailsModal
- 	props: ['locationName', 'featuredImage', 'locationDescription', 'locationWebsite', 'locatationImages'],
+ 	props: ['locationName', 'featuredImage', 'locationDescription', 'locationWebsite', 'locatationImages', 'panToLocation'],
  	data(){
  		// Passing data via props to render respective properties for LocationCard
  		return{
@@ -30,6 +35,7 @@
  			name: this.locationName,
  			description: this.locationDescription,
  			website: this.locationWebsite,
+ 			pan: this.panToLocation,
  		};
  	},
  	components: {

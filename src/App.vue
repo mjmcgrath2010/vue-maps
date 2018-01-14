@@ -11,6 +11,7 @@
                    <location-card
                 :locationName="item.name"
                 :featuredImage="(item.images ? item.images[0] : item.image || 'http://veventers.com/venueManager/uploads/venue-images/default-venue-image.jpeg')"
+                :panToLocation="mapLocation"
                 ></location-card>
                 </div>
               </v-flex>
@@ -91,7 +92,10 @@ export default {
      });
       // Tell Map Component to add pins to the Map after recieving data
      this.$root.$emit('add-pins', { pins: pinData })
-    }
+    },
+    mapLocation() {
+      console.log('Mapping Location');
+    }, 
   },
   mounted() {
     // When the application mounts, fetch the data from mock api then add pins to the map
