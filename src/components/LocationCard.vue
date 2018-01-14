@@ -26,7 +26,7 @@
  export default {
  	name: 'LocationCard',
  	// Properties needed to render the component card and set up the DetailsModal
- 	props: ['locationName', 'featuredImage', 'locationDescription', 'locationWebsite', 'locatationImages', 'panToLocation'],
+ 	props: ['locationName', 'featuredImage', 'locationDescription', 'locationWebsite', 'locatationImages', 'panToLocation', 'latLon'],
  	data(){
  		// Passing data via props to render respective properties for LocationCard
  		return{
@@ -35,8 +35,13 @@
  			name: this.locationName,
  			description: this.locationDescription,
  			website: this.locationWebsite,
- 			pan: this.panToLocation,
+ 			position: this.latLon,
  		};
+ 	},
+ 	methods: {
+ 		pan(){
+ 			this.panToLocation(this);
+ 		}
  	},
  	components: {
  		DetailModal,

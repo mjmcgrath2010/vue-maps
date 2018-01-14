@@ -9,10 +9,11 @@
                 <search :autoComplete="filterResults" :dataSource="sampleData"></search>
                 <div  v-for="item in filteredData" :key="item.id">
                    <location-card
-                :locationName="item.name"
-                :featuredImage="(item.images ? item.images[0] : item.image || 'http://veventers.com/venueManager/uploads/venue-images/default-venue-image.jpeg')"
-                :panToLocation="mapLocation"
-                ></location-card>
+                    :locationName="item.name"
+                    :featuredImage="(item.images ? item.images[0] : item.image || 'http://veventers.com/venueManager/uploads/venue-images/default-venue-image.jpeg')"
+                    :panToLocation="mapLocation"
+                    :latLon="item.location"
+                    ></location-card>
                 </div>
               </v-flex>
             </v-layout>
@@ -93,8 +94,12 @@ export default {
       // Tell Map Component to add pins to the Map after recieving data
      this.$root.$emit('add-pins', { pins: pinData })
     },
-    mapLocation() {
-      console.log('Mapping Location');
+    mapLocation(card) {
+      const location = {
+        lat: card.position.lat,
+        lon: card.position.lon
+      };
+      console.log('Mapping Location', location );
     }, 
   },
   mounted() {
