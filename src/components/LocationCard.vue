@@ -6,7 +6,7 @@
 	    <div>
 	      <h3 class="headline mb-0">{{ name }}</h3>
 	      <p class="description">{{ description }}</p>
-	      <span class="website"><a :href="website" target="_blank">{{ website.replace('//', '') }}</a></span>
+	      <span class="website" v-if="website"><a :href="website" target="_blank">{{ website.replace('//', '') }}</a></span>
 	    </div>
 	  </v-card-title>
 	  <v-card-actions>
