@@ -5,8 +5,8 @@
 	  <v-card-title primary-title>
 	    <div>
 	      <h3 class="headline mb-0">{{ name }}</h3>
-	      <div class="description">{{ description }}</div>
-	      <div class="website">{{ website }}</div>
+	      <p class="description">{{ description }}</p>
+	      <span class="website"><a :href="website" target="_blank">{{ website }}</a></span>
 	    </div>
 	  </v-card-title>
 	  <v-card-actions>

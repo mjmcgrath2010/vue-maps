@@ -44,6 +44,7 @@ export default {
   methods: {
     addPins(data){
       const targetMap = this.map;
+      const markers = []
       let processedData;
 
       if (!data) {
@@ -53,7 +54,7 @@ export default {
       processedData = data.pins;
       // I prefer to use lodash when I can to avoid browser compaitiabilty nightmares :)
       _.forEach(processedData,(value, index) => {
-        let marker = new google.maps.Marker({
+        markers[index] = new google.maps.Marker({
           position: value,
           map: targetMap
         });

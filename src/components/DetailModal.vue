@@ -9,8 +9,10 @@
 	        <v-card-title>
 	          <span class="headline">{{name}}</span>
 	        </v-card-title>
-	        <v-card-text>{{description || 'Description not Availible'}}</v-card-text>
-	        <h4>{{website}}</h4>
+	        <v-card-text>
+	        	<p class="description">{{description || 'Description not Availible'}}</p>
+	        	<span v-if="website">Visit us on the web: <a :href="website">{{website}}</a></span>
+	    	</v-card-text>
 	        <v-card-actions>
 	          <v-spacer></v-spacer>
 	          <v-btn color="green darken-1" flat="flat" @click="dialog = false">Close</v-btn>
@@ -47,5 +49,7 @@ export default {
 </script>
 
 <style scoped>
-	
+	.description {
+		font-size: 1.3em;
+	}
 </style>
