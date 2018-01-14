@@ -1,14 +1,14 @@
 <template>
 	<div>
 		 <v-flex xs12>
-            <v-text-field
-              name="input-1-3"
-              label="Search"
-              single-line
-              prepend-icon="search"
-              @keyup.native="filterResults"
-            ></v-text-field>
-          </v-flex>
+	        <v-text-field
+	          name="input-1-3"
+	          label="Search"
+	          single-line
+	          prepend-icon="search"
+	          @keyup.native="filterResults"
+	        ></v-text-field>
+	      </v-flex>
 	</div>
 </template>
 

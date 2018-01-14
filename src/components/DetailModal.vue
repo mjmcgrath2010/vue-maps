@@ -12,7 +12,7 @@
 	        </v-card-title>
 	        <v-card-text>
 	        	<p class="description">{{description || 'Description not Availible'}}</p>
-	        	<span v-if="website">Visit us on the web: <a :href="website" target="_blank">{{website}}</a></span>
+	        	<span v-if="website">Visit us on the web: <a :href="website" target="_blank">{{website.replace('//', '')}}</a></span>
 	    	</v-card-text>
 	        <v-card-actions>
 	          <v-spacer></v-spacer>
