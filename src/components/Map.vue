@@ -25,6 +25,7 @@ export default {
   created(){
     // Set up listener for add-pins event from parent.
     this.$root.$on('add-pins', this.addPins);
+    this.$root.$on('map-location', this.mapLocation);
   },
   mounted() {
     // Getting reference to the dom element we'll use to set up the map
@@ -86,6 +87,9 @@ export default {
       Vue.set(this, 'mapCenter', meanMapCenter);
       this.map.setCenter(new google.maps.LatLng(that.mapCenter));
     },
+    mapLocation(data) {
+      console.log('Mapping location from the Map component', data.location);
+    }
   },
 };
 </script>

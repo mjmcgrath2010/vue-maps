@@ -99,7 +99,8 @@ export default {
         lat: card.position.lat,
         lon: card.position.lon
       };
-      console.log('Mapping Location', location );
+      // Tell map component to map the clicked location
+      this.$root.$emit('map-location', { location: location })
     }, 
   },
   mounted() {
